@@ -81,4 +81,5 @@ class Square:
                 print()
             # Print horizontal spaces based on position[0] and the square
             for _ in range(self.__size):
-                print(" " * self.__position[0] + "#" * self.__size)
+                line_to_print = " " * self.__position[0] + "#" * self.__size
+                print(line_to_print)
