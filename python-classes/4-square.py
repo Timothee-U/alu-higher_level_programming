@@ -12,7 +12,7 @@ class Square:
     def __init__(self, size=0):
         """
         Initializes a Square instance.
-        
+
         Args:
             size (int): The size of the square. Defaults to 0.
         """
@@ -27,10 +27,10 @@ class Square:
     def size(self, value):
         """
         Setter method for size with validation.
-        
+
         Args:
             value (int): The size of the square.
-        
+
         Raises:
             TypeError: If value is not an integer.
             ValueError: If value is less than 0.
