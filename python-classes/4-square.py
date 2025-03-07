@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """
-Module defining the Square class.
+Module for Square class definition.
 """
+
 
 class Square:
     """
     A class that defines a square with size validation and area calculation.
     """
-    
+
     def __init__(self, size=0):
         """
         Initializes a Square instance.
@@ -16,12 +17,12 @@ class Square:
             size (int): The size of the square. Defaults to 0.
         """
         self.size = size  # Using the setter to validate size
-    
+
     @property
     def size(self):
         """Getter method for size."""
         return self.__size
-    
+
     @size.setter
     def size(self, value):
         """
@@ -39,7 +40,7 @@ class Square:
         if value < 0:
             raise ValueError("size must be >= 0")
         self.__size = value
-    
+
     def area(self):
         """Calculates and returns the area of the square."""
         return self.__size ** 2
