@@ -1,29 +1,64 @@
 #!/usr/bin/python3
-to_json_string = __import__('3-to_json_string').to_json_string
+import json
 
-my_list = [1, 2, 3]
-s_my_list = to_json_string(my_list)
-print(s_my_list)
-print(type(s_my_list))
+def to_json_string(my_obj):
+    """
+    Returns the JSON representation of an object (string).
+    
+    Args:
+        my_obj: The object to be serialized to JSON.
+    
+    Returns:
+        str: JSON representation of the input object.
+    """
+    return json.dumps(my_obj)
 
-my_dict = { 
-    'id': 12,
-    'name': "John",
-    'places': [ "San Francisco", "Tokyo" ],
-    'is_active': True,
+
+# Test cases to ensure the function works with different inputs
+
+# Case 1: A list of numbers and a string
+data = [1, 2, 3, "Holberton"]
+print(to_json_string(data))  # Expected: '[1, 2, 3, "Holberton"]'
+
+# Case 2: An empty list
+data = []
+print(to_json_string(data))  # Expected: '[]'
+
+# Case 3: A dictionary with one key-value pair
+data = {'id': 12}
+print(to_json_string(data))  # Expected: '{"id": 12}'
+
+# Case 4: A dictionary with multiple keys and a list as a value
+data = {'id': 12, 'numbers': [1, 2, 4]}
+print(to_json_string(data))  # Expected: '{"id": 12, "numbers": [1, 2, 4]}'
+
+# Case 5: A big dictionary
+data = {
+    'id': 123456,
+    'name': 'Test',
     'info': {
-        'age': 36,
-        'average': 3.14
+        'details': 'This is a large dictionary example',
+        'values': [100, 200, 300],
+        'nested_dict': {'key': 'value'}
     }
 }
-s_my_dict = to_json_string(my_dict)
-print(s_my_dict)
-print(type(s_my_dict))
+print(to_json_string(data))  # Expected: JSON string of the large dictionary
 
+# Case 6: A big list of dictionaries
+data = [
+    {'id': 1, 'name': 'Item 1'},
+    {'id': 2, 'name': 'Item 2'},
+    {'id': 3, 'name': 'Item 3'}
+]
+print(to_json_string(data))  # Expected: JSON string of the list of dictionaries
+
+# Case 7: A simple string
+data = "Simple string"
+print(to_json_string(data))  # Expected: '"Simple string"'
+
+# Case 8: Invalid data format (incorrect dictionary)
 try:
-    my_set = { 132, 3 }
-    s_my_set = to_json_string(my_set)  # Will raise an exception, sets are not serializable
-    print(s_my_set)
-    print(type(s_my_set))
+    data = {'id': 3, 'title': "Holberton", 89}  # Invalid data: missing key for 89
+    print(to_json_string(data))
 except Exception as e:
-    print("[{}] {}".format(e.__class__.__name__, e))
+    print("[{}] {}".format(e.__class__.__name__, e))  # Expected: exception about the invalid dictionary
